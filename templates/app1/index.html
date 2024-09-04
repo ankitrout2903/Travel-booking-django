@@ -1,0 +1,142 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="home" id="home">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/static/images/craousel_1.JPG" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/craousel_2.JPG" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/craousel_3.JPG" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/craousel_4.JPG" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button> -->
+  </div>
+</section>
+{% comment %}
+<script>
+  function img(anything) {
+    document.querySelector('.slide').src = anything;
+  }
+
+  function change(change) {
+    const line = document.querySelector('.image');
+    line.style.background = change;
+  }
+</script> {% endcomment %}
+<div class="home-grid">
+  <div class="text1">
+    <div class="home-text justify-content-center">
+      <h1 style="color:coral; letter-spacing:1px; margin:0;">Pearls of India</h1>
+      <h5 style="color:coral; letter-spacing:1px;">Welcome Everyone</h5>
+      <br>
+      <h6 style=" letter-spacing:1px;">Tour India and Nepal with your private guide and driver</h6>
+      <br>
+      <p style="line-height: 1.5rem; text-align: justify;">My name is Khem Khadaka, better known as “Babu”. I am from Nepal, I speak English and live part of the year in Delhi. My wife and children live in lowland of Nepal near Lumbini, the birthplace of Buddha. For more than 30 years I accommodate tours in the north of India and in Nepal. I can fully customize your tour or just act as your driver. With the support of some Dutch friends that host this website for me, i am able to offer you my services without the interference and costs of travel agencies. This offers you a very high rate of flexibility, direct contact and the best rate for your tour in “incredible India”.</p>
+    </div>
+  </div>
+    {% comment %} Book form {% endcomment %}
+  <div class="driverbook-home">
+    <section class="book-home">
+      <div class="container flex justify-content-center ">
+        <div class="login_register" style="text-align: center;">
+          <form action="{% url 'book_driver_view' %}" method="POST">
+            {% csrf_token %}
+            <h2 style="text-align:center;">Driver Booking</h2>
+            <br>
+            <label for="FormControlInput1">Full Name :</label>
+            <br>
+            <input type="text" id="FormControlInput1" placeholder="Full name" name="fullname" required>
+            <br>
+
+            <label for="FormControlInput1">Email :</label>
+            <br>
+            <input type="email" id="FormControlInput1" placeholder="name@hello.com" name="email" required>
+            <br>
+
+            <label for="FormControlInput1">Persons :</label>
+            <br>
+            <input type="number" id="FormControlInput1" placeholder="2" name="persons" required>
+            <br>
+
+            <label for="FormControlInput1">Departure Date :</label>
+            <br>
+            <input type="date" id="FormControlInput1" placeholder="" name="departure_date" required>
+            <br>
+
+            <label for="FormControlInput1">Duration (days) :</label>
+            <br>
+            <input type="number" id="FormControlInput1" placeholder="in days" name="duration" required>
+            <br>
+            <br>
+
+            <button class='btn-secondary btn' type="submit">submit</button>
+
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+{% comment %} about {% endcomment %}
+{% include './includes/Homeabout.html' %}
+
+{% comment %} facilites {% endcomment %}
+{% include './includes/facilities.html' %}
+
+{% comment %} packages {% endcomment %}
+{% include './includes/packagesHome.html' %}
+
+{% comment %} review {% endcomment %}
+{% include './includes/topreview.html' %}
+
+{% comment %} blogs {% endcomment %}
+{% include './includes/blogsHome.html' %}
+
+{% comment %} drivers {% endcomment %}
+{% include './includes/drivers.html' %}
+
+{% comment %} gallery {% endcomment %}
+{% include './includes/gallery.html' with images=gallery_images %}
+
+
+
+
+
+<script>
+  var accItem = document.getElementsByClassName('accordionItem');
+  var accHD = document.getElementsByClassName('accordionIHeading');
+
+  for (i = 0; i < accHD.length; i++) {
+    accHD[i].addEventListener('click', toggleItem, false);
+  }
+
+  function toggleItem() {
+    var itemClass = this.parentNode.className;
+    for (var i = 0; i < accItem.length; i++) {
+      accItem[i].className = 'accordionItem close';
+    }
+    if (itemClass == 'accordionItem close') {
+      this.parentNode.className = 'accordionItem open';
+    }
+  }
+</script>
+
+
+{% endblock content %}

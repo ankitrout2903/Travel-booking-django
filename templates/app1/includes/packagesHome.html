@@ -1,0 +1,56 @@
+<section class="room top" id="room">
+    <div class="container">
+      <div class="heading_top flex1">
+        <div class="heading">
+          <h5>RAISING TRAVEL AND ADVENTURE TO THE HIGHEST LEVEL</h5>
+          <h2>Travel Packages</h2>
+        </div>
+        <div class="button">
+         <a href="{%url 'packages_view'%}"> <button class="btn1">VIEW ALL</button></a>
+        </div>
+      </div>
+  
+      <!-- <div class="content grid">
+
+        {% for package in top_packages %}
+        <a href="{% url 'packageDetail_view' package.id %}">
+          <div class="box">
+            <div class="img">
+              <img src="{{package.image.url}}" alt="{{package.title}}">
+            </div>
+            <div class="text">
+              <h3>{{package.title|capfirst}}</h3>
+              <p> <span>$</span>{{package.price}} <span>/per person
+                <br>{{package.country}}</span> </p>
+                <p style="text-align: right;">Rating : {{package.averagereview}}({{package.countreview}})</p>
+            </div>
+          </div>
+        </a>
+
+        {% endfor %}
+      </div> -->
+
+      <section class="gallery">
+        <div class="container-lg">
+            <div class="row gy-4 row-cols-2 row-cols-sm-3 row-cols-md-4">
+              {% for package in top_packages %}
+              <a href="{% url 'packageDetail_view' package.id %}" style="color:black;">
+                <div class="col">
+                    <img src="{{package.image.url}}" class="gallery-item" alt="Gallery1" name="{{photo.title}}">
+                    <div class="text">
+                      <h5>{{package.title|capfirst}}</h5>
+                       <span>$</span>{{package.price}} <span>/per person
+                         <br>
+                         {{package.country}}</span> 
+                         <p style="text-align: right; position: relative; font-size: .8rem; padding:0; top:-20px;">{{package.averagereview}}({{package.countreview}})</p>
+                    </div>
+                </div>
+              </a>
+            {% endfor %}
+
+            </div>
+        </div>
+      </section>
+    </div>
+</section>
+  

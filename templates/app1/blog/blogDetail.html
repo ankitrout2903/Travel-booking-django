@@ -1,0 +1,65 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block content %}
+<div class="main">
+    <div class='productbanner' style="background: url('{{ blog.image.url }}');background-position: center;
+    background-size: cover;">
+        <div class="banner-detail">
+            <h2>{{blog.title|capfirst}}</h2>
+            <br>
+            <p style="max-width: 35rem;">Speciality : {{blog.speciality|capfirst}}</p>
+            <p style="max-width: 35rem;">Description : {{blog.description|capfirst}}</p>
+        </div>
+    </div>
+    <br>
+    {% for event in events %}
+    <div class="cards" style="width:full; margin:5px 10px; padding: 1px; box-shadow: 0px 0px 15px rgba(0,0,0,0.3);">
+        <div class="card-item">
+            <h2>{{event.title|capfirst}}</h2>
+            <p>{{event.description|capfirst}}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+    <br>
+    <h2 class="head_middle">Blog Gallery</h2>
+
+
+    <div class="package_gallery">
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                {% for photo in photos %}
+                <button type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="{{forloop.counter0}}" class="{% if forloop.counter0 == 0 %} active {% endif %}"
+                    aria-current="true" style="height: 1rem; width: 1rem; border:none;border-radius: 0.5rem;"></button>
+                {% endfor %}
+            </div>
+            <div class="carousel-inner">
+                {% for photo in photos %}
+                <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                    <img src="{{photo.image.url}}" class="d-block w-100 gallery-item" alt="Gallery1"
+                        name="{{photo.title}}" alt="...">
+                </div>
+                {% endfor %}
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    {% comment %} Book form {% endcomment %}
+    <div class="driverbook1">
+        {% include '../includes/driverbook.html' %}
+    </div>
+</div>
+
+
+{% endblock content %}

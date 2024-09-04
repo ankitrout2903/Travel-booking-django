@@ -1,0 +1,31 @@
+<section class="room top" id="room">
+    <div class="container">
+        <div class="heading_top flex1">
+            <div class="heading">
+                <h5>LATEST UPDATE FROM OUR SIDE.</h5>
+                <h2>Blogs</h2>
+            </div>
+            <div class="button">
+                <a href="{%url 'blogs_view'%}"> <button class="btn1">VIEW ALL</button></a>
+            </div>
+        </div>
+
+        <section class="gallery">
+            <div class="container-lg">
+                <div class="row gy-4 row-cols-2 row-cols-sm-3 row-cols-md-4">
+                    {% for blog in top_blogs %}
+                    <a href="{% url 'blogDetail_view' blog.id %}" style="color:black;">
+                        <div class="col">
+                            <img src="{{blog.image.url}}" class="gallery-item" alt="Gallery1" name="{{photo.title}}">
+                            <div class="text">
+                                <h5>{{blog.title|capfirst}}</h5>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
